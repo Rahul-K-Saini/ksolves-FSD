@@ -1,13 +1,18 @@
 import mongoose from 'mongoose';
 
 export default async function connectToDB() {
-    try {
-        await mongoose.connect(process.env.MONGODB_URL || "mongodb://localhost:27017")
-        console.log("Connected to MongoDB")
-    }
-    catch (e: any) {
-        console.log("connecttion to mongodb failed!!!")
-        console.log(e.message)
+    // Check if the connection is already established
+    if (mongoose.connection.readyState >= 1) {
+        console.log("Already connected to MongoDB");
+        return;
     }
 
+    try {
+
+        await mongoose.connect(process.env.MONGO_URL || "mongodb://localhost:27017/ksolves");
+        console.log("Connected to MongoDB");
+    } catch (e: any) {
+        console.log("Connection to MongoDB failed!!!");
+        console.log(e.message);
+    }
 }
