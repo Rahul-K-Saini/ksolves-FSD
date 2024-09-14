@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import Navbar from "@/components/navbar/nav";
-import { ThemeProvider } from "@/components/theme/theme-provider"
-
+import { ThemeProvider } from "@/components/theme/theme-provider";
+import Footer from "@/components/footer";
+import { Toaster } from "react-hot-toast";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -17,16 +18,18 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-      <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-          >
-        <Navbar/>
-        {children}
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <Toaster />
+          <Navbar />
+          <main className="mt-16">{children}</main>
+          <Footer />
         </ThemeProvider>
-        </body>
+      </body>
     </html>
   );
 }

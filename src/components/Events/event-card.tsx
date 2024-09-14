@@ -15,7 +15,6 @@ import { Event } from "@/types/event";
 const EventCard: React.FC<Event> = ({
   title,
   date,
-  time,
   location,
   imageUrl,
   description,
@@ -49,10 +48,10 @@ const EventCard: React.FC<Event> = ({
             <CalendarDays className="mr-2 h-4 w-4" />
             <span>{date}</span>
           </div>
-          <div className="flex items-center text-sm text-gray-500 dark:text-gray-400">
+          {/* <div className="flex items-center text-sm text-gray-500 dark:text-gray-400">
             <Clock className="mr-2 h-4 w-4" />
             <span>{time}</span>
-          </div>
+          </div> */}
           <div className="flex items-center text-sm text-gray-500 dark:text-gray-400">
             <MapPin className="mr-2 h-4 w-4" />
             <span>{location}</span>
@@ -60,7 +59,7 @@ const EventCard: React.FC<Event> = ({
         </div>
       </CardContent>
       <CardFooter className="p-4 bg-gray-50 dark:bg-gray-800">
-        <Button className="w-full">Register Now</Button>
+        <Button className="w-full">{isPast ? "See Details":"Register Now"}</Button>
       </CardFooter>
     </Card>
   );
